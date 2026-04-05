@@ -14,9 +14,9 @@
 
 ## **Installation DotFiles:**
 
-1. git clone nixos-config
+1. git clone URL.nixos-config
 2. cd nixos-config/nixos
-3. sudo cp /etc/nixos/hardware-configuration.nix ~/nixos-config/nixos/hardware-configuration.nix
+3. sudo cp /etc/nixos/hardware-configuration.nix ./hardware-configuration.nix
 4. git init
 5. git add .
 6. git commit -m "1.0"
