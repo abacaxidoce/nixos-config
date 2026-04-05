@@ -2,7 +2,7 @@
 
 {
   imports = [
-   ./desktop/sway.nix
+   ../desktop/sway.nix
    ./login.nix
   ];
   
