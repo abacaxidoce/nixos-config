@@ -1,0 +1,29 @@
+# --- Essencial ---
+font=JetBrainsMono Nerd Font 11
+width=280
+margin=12
+padding=12
+border-radius=6
+anchor=top-right
+layer=overlay
+
+# --- Visual 
+background-color=#000000bf
+text-color=#ffffff
+border-size=0
+icons=1
+
+# --- Comportamento ---
+default-timeout=3000
+ignore-timeout=1
+
+# --- Regras de Urgência ---
+[urgency=low]
+text-color=#666666
+default-timeout=3000
+
+[urgency=high]
+background-color=#000000bf
+border-size=1
+border-color=#FF6363
+default-timeout=0

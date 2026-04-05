@@ -1,0 +1,130 @@
+### VARIABLES
+# Key modifiers and default applications
+set $mod Mod4
+set $term alacritty
+set $menu fuzzel
+set $browser firefox
+set $browser_work firefox -P work  # bash: firefox -CreateProfile "work"
+
+# Workspace names
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+### APPEARANCE
+# Window borders
+smart_borders on
+default_border pixel 1
+default_floating_border pixel 1
+
+# Window decoration colors
+# class                 border  bg      text    indicator child_border
+client.focused          #3b4252 #3b4252 #ffffff #3b4252 #3b4252
+client.focused_inactive #3b4252 #3b4252 #ffffff #3b4252 #3b4252
+client.unfocused        #3b4252 #3b4252 #ffffff #3b4252 #3b4252
+
+### INPUT CONFIGURATION
+# Keyboard layout and options
+input type:keyboard {
+    xkb_layout "br"
+    xkb_options caps:escape
+}
+
+# Touchpad settings
+input type:touchpad {
+    tap enable
+    natural_scroll enable
+    dwt enable 
+}
+
+### AUTOSTART
+# Programs to run on startup
+exec_always mako
+exec wlsunset -T 3001 -t 3000 -l -5.0 -L -42.4
+
+### KEYBINDINGS
+# Essential application shortcuts
+bindsym $mod+Return exec $term
+bindsym $mod+Space exec $menu
+bindsym $mod+b exec $browser
+bindsym $mod+Shift+b exec $browser_work
+
+# Window management
+bindsym $mod+f fullscreen
+bindsym $mod+q kill
+
+# Focus navigation (Vim-style)
+bindsym $mod+h focus left
+bindsym $mod+l focus right
+
+# Resizing containers
+bindsym $mod+Ctrl+h resize grow width 30px
+bindsym $mod+Ctrl+l resize shrink width 30px
+
+# Workspace switching
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+# Moving containers to workspaces
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+# Custom script navigation
+bindsym $mod+Mod1+h exec ~/.config/sway/scripts/workspace-nav.sh left
+bindsym $mod+Mod1+l exec ~/.config/sway/scripts/workspace-nav.sh right
+
+# Hardware controls (Audio & Brightness)
+bindsym $mod+m exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioRaiseVolume exec wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+
+### WINDOW RULES
+# Behavior for specific window types
+for_window [window_role="pop-up|task_dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [class=".*"] inhibit_idle fullscreen
+
+### BAR
+# Status bar configuration
+bar {
+    position top
+    font JetBrainsMono Nerd Font 9
+    status_command ~/.config/sway/scripts/bar.sh
+    pango_markup enabled
+
+    colors {
+        background #000000
+        statusline #ffffff
+        separator  #3b4252
+
+        focused_workspace  #3b4252 #3b4252 #000000
+        inactive_workspace #000000 #000000 #ffffff
+        urgent_workspace   #3b4252 #000000 #ffffff
+    }
+}
+
+### EXTERNAL CONFIGS
+include /etc/sway/config.d/*
