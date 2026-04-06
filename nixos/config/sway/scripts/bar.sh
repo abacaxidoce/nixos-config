@@ -43,9 +43,9 @@ while :; do
     # --- MICROPHONE ---
     mic_raw=$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ 2>/dev/null || echo "0.00")
     if [[ "$mic_raw" == *"[MUTED]"* ]]; then
-        mic_info="<span color='#949494'>MIC/</span> <span color='#f28fad'>OFF</span>"
+        mic_info="<span color='#949494'>MIC:</span> <span color='#f28fad'>OFF</span>"
     else
-        mic_info="<span color='#949494'>MIC/</span> <span color='#abe9b3'>ON</span>"
+        mic_info="<span color='#949494'>MIC:</span> <span color='#abe9b3'>ON</span>"
     fi
 
 
